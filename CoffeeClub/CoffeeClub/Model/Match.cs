@@ -42,7 +42,7 @@ namespace CoffeeClub.Model
         public string FirstName { get; set; }
 
         /// <summary>
-        /// The first name of the employee.
+        /// The second name of the employee.
         /// </summary>
         public string SecondName { get; set; }
 
@@ -96,5 +96,14 @@ namespace CoffeeClub.Model
         /// The sex of the person.
         /// </summary>
         public string Sex { get; set; }
+        
+        override
+        public string ToString()
+        {
+            return "The first name of the person is " + this.FirstName + "\n"
+                + "The second name of the person is " + this.SecondName + "\n"
+                + "The age of the person is " + this.Age + "\n"
+                + "The role is " + this.Role;
+        }
     }
 }

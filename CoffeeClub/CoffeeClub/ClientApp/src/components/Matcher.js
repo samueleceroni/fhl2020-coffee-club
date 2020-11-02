@@ -25,13 +25,13 @@ export class Matcher extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {people.map(forecast =>
-                        <tr key={people.id}>
-                            <td>{people.firstname}</td>
-                            <td>{people.secondname}</td>
-                            <td>{people.age}</td>
-                            <td>{people.sex}</td>
-                            <td>{people.role}</td>
+                    {people.map(person =>
+                        <tr key={person.id}>
+                            <td>{person.firstName}</td>
+                            <td>{person.secondName}</td>
+                            <td>{person.age}</td>
+                            <td>{person.sex}</td>
+                            <td>{person.role}</td>
                         </tr>
                     )}
                 </tbody>
@@ -55,8 +55,8 @@ export class Matcher extends Component {
 
     async populateMatchesData() {
         const response = await fetch('match');
-        console.log(response);
         const data = await response.json();
+        console.log(data[0]);
         this.setState({ people: data, loading: false });
     }
 }
