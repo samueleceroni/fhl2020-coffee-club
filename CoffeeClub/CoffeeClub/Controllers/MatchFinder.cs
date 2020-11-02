@@ -53,6 +53,7 @@ namespace CoffeeClub.Controllers
                             {
                                 UnassignedPeople.Remove(GroupMember);
                                 UnassignedPeople.Remove(Person);
+                                return Person;
                             }
                         }
                     }
