@@ -49,7 +49,7 @@ namespace CoffeeClub.Controllers
                     {
                         foreach (Person GroupMember in Group.GroupMembers)
                         {
-                            if (UnassignedPeople.Contains(GroupMember))
+                            if (UnassignedPeople.Contains(GroupMember) && !Person.Equals(GroupMember))
                             {
                                 UnassignedPeople.Remove(GroupMember);
                                 UnassignedPeople.Remove(Person);
