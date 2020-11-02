@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeClub.Model
 {
-    public class Match
+    public class Person
     {
-        public Match(
+        public Person(
             string FirstName,
             string SecondName,
             int Id,
@@ -97,13 +97,30 @@ namespace CoffeeClub.Model
         /// </summary>
         public string Sex { get; set; }
         
-        override
-        public string ToString()
+        public override string ToString()
         {
             return "The first name of the person is " + this.FirstName + "\n"
                 + "The second name of the person is " + this.SecondName + "\n"
                 + "The age of the person is " + this.Age + "\n"
                 + "The role is " + this.Role;
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Person;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Id.Equals(item.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
+
     }
 }

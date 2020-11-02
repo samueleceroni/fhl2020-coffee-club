@@ -13,9 +13,12 @@ namespace CoffeeClub.Controllers
     [ApiController]
     public class MatchController : ControllerBase
     {
-        public List<Match> employees = new List<Match>
+        /// <summary>
+        /// Hard coded list of employees.
+        /// </summary>
+        public List<Person> Employees = new List<Person>
         {
-            new Match(
+            new Person(
                 "Catalin",
                 "Galban",
                 0,
@@ -34,7 +37,7 @@ namespace CoffeeClub.Controllers
                 20,
                 "M"
                 ),
-            new Match(
+            new Person(
                 "Alexandra",
                 "Savu",
                 1,
@@ -54,21 +57,40 @@ namespace CoffeeClub.Controllers
                 "F"
                 ),
         };
+        public MatchFinder MatchFinder { get; }
+
+        public MatchController()
+        {
+            this.MatchFinder = new MatchFinder(this.Employees,new AllPeopleToOneGroupAssigner());
+        }
 
         // GET: api/<MatchesController>
         [HttpGet]
-        public IEnumerable<Match> Get()
+        public IEnumerable<Person> Get()
         {
-            return this.employees;
+            return this.Employees;
         }
 
         // GET api/<MatchesController>/5
         // TODO
+        // Null check
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Person Get(int Id)
         {
-            return "value";
+            Person PersonToMatch = this.FindPersonById(Id);
+            return MatchFinder.GetFirstMatch(PersonToMatch);
         }
 
+        private Person FindPersonById(int Id)
+        {
+            foreach (Person Person in Employees)
+            {
+                if (Person.Id == Id )
+                {
+                    return Person;
+                }
+            }
+            return null;
+        }
     }
 }
