@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CoffeeClub.Model
 {
-    public class Person
+    public class Person : IComparable<Person>
     {
         public Person(
             string FirstName,
@@ -121,6 +122,16 @@ namespace CoffeeClub.Model
         {
             return this.Id.GetHashCode();
         }
+
+        public int CompareTo([AllowNull] Person other)
+        {
+            return Id - other.Id;
+        }
+
+        public static bool operator >(Person a, Person b) => a.Id > b.Id;
+        public static bool operator <(Person a, Person b) => a.Id < b.Id;
+        public static bool operator ==(Person a, Person b) => a.Id == b.Id;
+        public static bool operator !=(Person a, Person b) => !(a == b);
 
     }
 }

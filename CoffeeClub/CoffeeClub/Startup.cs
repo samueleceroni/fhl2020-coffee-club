@@ -1,3 +1,4 @@
+using CoffeeClub.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,8 @@ namespace CoffeeClub
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddSingleton<IFriends, Friends>()
+                    .AddSingleton<IOnTheSpotQueue, OnTheSpotQueue>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
