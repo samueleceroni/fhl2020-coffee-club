@@ -5,29 +5,44 @@ using System.Threading.Tasks;
 
 namespace CoffeeClub.Model
 {
-    public interface IFriends
+    public interface IOnTheSpotQueue
     {
-        bool AreFriends(Person p1, Person p2);
-        bool TryAddFriends(Person p1, Person p2);
+        bool TryGetMatch(Person toBeMatched, out Person match);
+        bool TryAddToQueue(Person personToBeAdded);
     }
 
-    public class Friends : IFriends
+    public class OnTheSpotQueue : IOnTheSpotQueue
     {
-        private IDictionary<Person, IList<Person>> friends;
+        private readonly List<Person> queue;
+        private readonly IFriends friends;
 
-        public bool AreFriends(Person p1, Person p2)
+        public OnTheSpotQueue(IFriends friends)
         {
-            if (friends.TryGetValue(p1, out var p1Friends))
-            {
-                 
-            }
-            //friends.tr
-            throw new NotImplementedException();
+            this.friends = friends;
         }
 
-        public bool TryAddFriends(Person p1, Person p2)
+        public bool TryAddToQueue(Person personToBeAdded)
         {
-            throw new NotImplementedException();
+            if(queue.Contains(personToBeAdded)){
+                return false;
+            }
+            queue.Add(personToBeAdded);
+            return true;
+        }
+
+        public bool TryGetMatch(Person toBeMatched, out Person match)
+        {
+            foreach  (var person in queue)
+            {
+                if(!friends.AreFriends(person, toBeMatched))
+                {
+                    match = person;
+                    queue.Remove(person);
+                    return true;
+                }
+            }
+            match = null;
+            return false;
         }
     }
 }
