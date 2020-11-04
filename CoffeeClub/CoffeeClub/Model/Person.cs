@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -97,6 +98,23 @@ namespace CoffeeClub.Model
         /// The sex of the person.
         /// </summary>
         public string Sex { get; set; }
+
+        public bool TryToUpdateToPerson(Person p)
+        {
+            if (p.Id != Id) return false;
+            FirstName = p.FirstName;
+            SecondName = p.SecondName;
+            Interests = p.Interests;
+            Region = p.Region;
+            Country = p.Country;
+            City = p.City;
+            Role = p.Role;
+            Department = p.Department;
+            Organization = p.Organization;
+            Age = p.Age;
+            Sex = p.Sex;
+            return true;
+        }
         
         public override string ToString()
         {

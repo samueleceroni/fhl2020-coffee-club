@@ -22,7 +22,7 @@ namespace CoffeeClub.Controllers
         }
 
         [HttpPost]
-        public Person Get()
+        public Person GetOnTheSpotMatch()
         {
             var personId = int.Parse(Request.Headers["id"]);
             users.TryGetPersonById(personId, out var personToBeMatched);

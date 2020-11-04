@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CoffeeClub.Model
 {
@@ -11,6 +8,8 @@ namespace CoffeeClub.Model
         bool TryAddUser(Person person);
         bool AreFriends(Person p1, Person p2);
         bool TryAddFriends(Person p1, Person p2);
+        bool TryUpdateUser(Person person);
+        IEnumerable<Person> GetAllFriends(Person p);
     }
 
     public class Users : IUsers
@@ -60,7 +59,7 @@ namespace CoffeeClub.Model
             }
         };
 
-        private readonly IDictionary<Person, IList<Person>> friends = new Dictionary<Person, IList<Person>>();
+        private readonly IDictionary<int, IList<Person>> friends = new Dictionary<int, IList<Person>>();
         private int idCounter = 2;
 
         private void SortPersons(ref Person p1, ref Person p2)
@@ -83,29 +82,49 @@ namespace CoffeeClub.Model
         public bool AreFriends(Person p1, Person p2)
         {
             SortPersons(ref p1, ref p2);
-            return friends.TryGetValue(p1, out var p1Friends) && p1Friends.Contains(p2);
+            return friends.TryGetValue(p1.Id, out var p1Friends) && p1Friends.Contains(p2);
         }
 
         public bool TryAddFriends(Person p1, Person p2)
         {
             SortPersons(ref p1, ref p2);
 
-            if(AreFriends(p1, p2))
+            if (AreFriends(p1, p2))
             {
                 return false;
             }
 
-            if (!friends.ContainsKey(p1))
+            if (!friends.ContainsKey(p1.Id))
             {
-                friends.Add(p1, new List<Person>());
+                friends.Add(p1.Id, new List<Person>());
             }
-            friends[p1].Add(p2);
+            friends[p1.Id].Add(p2);
             return true;
         }
 
-        public bool TryGetPersonById(int personId, out Person person)
+
+        public bool TryRemoveFriends(Person p1, Person p2)
         {
-            return users.TryGetValue(personId, out person);
+            SortPersons(ref p1, ref p2);
+
+            if (!AreFriends(p1, p2))
+            {
+                return false;
+            }
+            friends[p1.Id].Remove(p2);
+            return true;
         }
+
+        public IEnumerable<Person> GetAllFriends(Person p)
+        {
+            return friends.TryGetValue(p.Id, out var pFriends) ? new List<Person>(pFriends) : new List<Person>();
+        }
+
+        public bool TryGetPersonById(int personId, out Person person) =>
+            users.TryGetValue(personId, out person);
+
+        public bool TryUpdateUser(Person person) =>
+            users.TryGetValue(person.Id, out var p) && p.TryToUpdateToPerson(person);
+
     }
 }
