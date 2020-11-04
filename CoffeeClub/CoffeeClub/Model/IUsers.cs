@@ -7,6 +7,10 @@ namespace CoffeeClub.Model
 {
     public interface IUsers
     {
+        /// <summary>
+        /// Retrieves the list of people from the relationships.
+        /// </summary>
+        List<Person> GetPeople();
         bool TryGetPersonById(int personId, out Person person);
         bool TryAddUser(Person person);
         bool AreFriends(Person p1, Person p2);
@@ -73,6 +77,10 @@ namespace CoffeeClub.Model
             }
         }
 
+        public List<Person> GetPeople()
+        {
+            return (List<Person>)users.Keys;
+        }
         public bool TryAddUser(Person person)
         {
             person.Id = idCounter++;

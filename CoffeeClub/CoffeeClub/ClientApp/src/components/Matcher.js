@@ -47,7 +47,7 @@ export class Matcher extends Component {
         return (
             <div>
                 <h1 id="tabelLabel" >Matching people</h1>
-                <p>Searching for potential matches.</p>
+                <p>People that are not currently matched.</p>
                 {contents}
             </div>
         );
