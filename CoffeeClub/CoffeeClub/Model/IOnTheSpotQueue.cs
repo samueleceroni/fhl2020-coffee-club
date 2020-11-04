@@ -13,12 +13,12 @@ namespace CoffeeClub.Model
 
     public class OnTheSpotQueue : IOnTheSpotQueue
     {
-        private readonly List<Person> queue;
-        private readonly IFriends friends;
+        private readonly List<Person> queue = new List<Person>();
+        private readonly IUsers users;
 
-        public OnTheSpotQueue(IFriends friends)
+        public OnTheSpotQueue(IUsers users)
         {
-            this.friends = friends;
+            this.users = users;
         }
 
         public bool TryAddToQueue(Person personToBeAdded)
@@ -34,7 +34,7 @@ namespace CoffeeClub.Model
         {
             foreach  (var person in queue)
             {
-                if(!friends.AreFriends(person, toBeMatched))
+                if(!users.AreFriends(person, toBeMatched))
                 {
                     match = person;
                     queue.Remove(person);

@@ -128,10 +128,10 @@ namespace CoffeeClub.Model
             return Id - other.Id;
         }
 
-        public static bool operator >(Person a, Person b) => a.Id > b.Id;
-        public static bool operator <(Person a, Person b) => a.Id < b.Id;
-        public static bool operator ==(Person a, Person b) => a.Id == b.Id;
-        public static bool operator !=(Person a, Person b) => !(a == b);
+        public static bool operator >(Person a, Person b) => a != null && b != null && a.Id > b.Id;
+        public static bool operator <(Person a, Person b) => a != null && b != null && a.Id < b.Id;
+        public static bool operator ==(Person a, Person b) => a != null && b != null && a.Id == b.Id;
+        public static bool operator !=(Person a, Person b) => a != null && b != null && !(a == b);
 
     }
 }
