@@ -23,25 +23,39 @@ namespace CoffeeClub.Controllers
         public IEnumerable<Group> GetRecurrentMatch()
         {
             var solution = new List<Group>();
-            MakeGroups(solution, new HashSet<Person>()/*change with active unpaired members*/, 2);
+            MakeGroups(solution, new HashSet<Person>(users.GetAllUsers()), 2);
             return solution;
         }
 
         private IEnumerable<Person> GetPossibleMatches(Group group, ISet<Person> activeUnpairedMembers){
             var possibleMatches = new HashSet<Person>(activeUnpairedMembers);
             foreach (var member in group.GroupMembers)
-            {
                 foreach (var alreadyFriendMember in users.GetAllFriends(member))
-                {
                     possibleMatches.Remove(alreadyFriendMember);
-                }
-            }
             return possibleMatches;
         }
 
         private void MakeGroups(IList<Group> currSolution, ISet<Person> activeUnpairedMembers, int normalGroupSize)
         {
-
+            if (activeUnpairedMembers.Count == 0) return;
+            if(currSolution.Count == 0 || currSolution.Last().Count >= normalGroupSize)
+                currSolution.Add(new Group());
+            var possibleMatches = GetPossibleMatches(currSolution.Last(), activeUnpairedMembers);
+            foreach(var match in possibleMatches)
+            {
+                activeUnpairedMembers.Remove(match);
+                foreach(var member in currSolution.Last().GroupMembers)
+                    users.TryAddFriends(member, match);
+                currSolution.Last().AddMember(match);
+                MakeGroups(currSolution, activeUnpairedMembers, normalGroupSize);
+                if (activeUnpairedMembers.Count == 0) return;
+                currSolution.Last().RemoveMember(match);
+                foreach(var member in currSolution.Last().GroupMembers)
+                    users.TryRemoveFriends(member, match);
+                activeUnpairedMembers.Add(match);
+            }
+            if (currSolution.Last().Count == 0)
+                currSolution.RemoveAt(currSolution.Count - 1);
         }
     }
 }

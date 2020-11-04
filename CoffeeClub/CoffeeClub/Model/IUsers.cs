@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CoffeeClub.Model
 {
@@ -8,8 +9,10 @@ namespace CoffeeClub.Model
         bool TryAddUser(Person person);
         bool AreFriends(Person p1, Person p2);
         bool TryAddFriends(Person p1, Person p2);
+        bool TryRemoveFriends(Person p1, Person p2);
         bool TryUpdateUser(Person person);
         IEnumerable<Person> GetAllFriends(Person p);
+        IEnumerable<Person> GetAllUsers();
     }
 
     public class Users : IUsers
@@ -115,10 +118,12 @@ namespace CoffeeClub.Model
             return true;
         }
 
-        public IEnumerable<Person> GetAllFriends(Person p)
-        {
-            return friends.TryGetValue(p.Id, out var pFriends) ? new List<Person>(pFriends) : new List<Person>();
-        }
+        public IEnumerable<Person> GetAllUsers() => users.Values;
+
+        public IEnumerable<Person> GetAllFriends(Person p) =>
+            friends.TryGetValue(p.Id, out var pFriends)
+            ? new List<Person>(pFriends)
+            : new List<Person>();
 
         public bool TryGetPersonById(int personId, out Person person) =>
             users.TryGetValue(personId, out person);
