@@ -7,6 +7,12 @@ namespace CoffeeClub.Model
 {
     public interface IUsers
     {
+
+        /// <summary>
+        /// Getter for the list of all users
+        /// </summary>
+        /// <returns>A list of <see cref="Person.cs"/> </returns>
+        List<Person> GetPeople();
         bool TryGetPersonById(int personId, out Person person);
         bool TryAddUser(Person person);
         bool AreFriends(Person p1, Person p2);
@@ -106,6 +112,11 @@ namespace CoffeeClub.Model
         public bool TryGetPersonById(int personId, out Person person)
         {
             return users.TryGetValue(personId, out person);
+        }
+
+        public List<Person> GetPeople()
+        {
+            return users.Values.ToList();
         }
     }
 }

@@ -5,6 +5,8 @@ export class Matcher extends Component {
 
     constructor(props) {
         super(props);
+        console.log("The id used is " + String(this.props.match.params.id));
+        this.id = this.props.match.params.id;
         this.state = { people: [], loading: true };
     }
 
@@ -47,16 +49,24 @@ export class Matcher extends Component {
         return (
             <div>
                 <h1 id="tabelLabel" >Matching people</h1>
-                <p>Searching for potential matches.</p>
+                <p>Displaying the list of potential matches.</p>
                 {contents}
             </div>
         );
     }
 
     async populateMatchesData() {
-        const response = await fetch('match');
+        var response = null;
+        if (this.id == null)
+        {
+            response = await fetch('match');
+        }
+        else
+        {
+            response = await fetch('match/' + String(this.id));
+        }
         const data = await response.json();
-        console.log(data[0]);
+        console.log(data);
         this.setState({ people: data, loading: false });
     }
 }

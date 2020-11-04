@@ -17,7 +17,7 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
-        <Route path='/get-matches' component={Matcher} />
+        <Route path='/get-matches/:id?' component={Matcher} />
         <Route path='/on-the-spot-match' component={OnTheSpotMatch} />
       </Layout>
     );

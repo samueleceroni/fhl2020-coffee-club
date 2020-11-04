@@ -11,9 +11,8 @@ namespace CoffeeClub.Model
     public class Group
     {
 
-        public Group(bool Notified=false)
+        public Group()
         {
-            this.Notified = Notified;
             this.GroupMembers = new HashSet<Person>();
         }
         public void AddMember(Person person)
@@ -25,7 +24,6 @@ namespace CoffeeClub.Model
         {
             return this.GroupMembers.Contains(person);
         }
-        public bool Notified { get; }
         public HashSet<Person> GroupMembers { get; }
     }
 }
