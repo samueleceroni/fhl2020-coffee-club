@@ -13,19 +13,19 @@ namespace CoffeeClub.Controllers
     public class OnTheSpotMatchController : ControllerBase
     {
         private readonly IOnTheSpotQueue queue;
+        private readonly IUsers users;
 
-        private Person IdToPerson(int id) => null;
-
-        public OnTheSpotMatchController(IOnTheSpotQueue queue)
+        public OnTheSpotMatchController(IOnTheSpotQueue queue, IUsers users)
         {
             this.queue = queue;
+            this.users = users;
         }
 
         [HttpPost]
         public Person Get()
         {
             var personId = int.Parse(Request.Headers["id"]);
-            var personToBeMatched = IdToPerson(personId);
+            users.TryGetPersonById(personId, out var personToBeMatched);
             if(!queue.TryGetMatch(personToBeMatched, out var matchedPerson) && !queue.TryAddToQueue(personToBeMatched))
             {
                 throw new NotImplementedException();

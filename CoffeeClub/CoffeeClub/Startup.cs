@@ -29,7 +29,7 @@ namespace CoffeeClub
             {
                 configuration.RootPath = "ClientApp/build";
             });
-            services.AddSingleton<IFriends, Friends>()
+            services.AddSingleton<IUsers, Users>()
                     .AddSingleton<IOnTheSpotQueue, OnTheSpotQueue>();
         }
 
