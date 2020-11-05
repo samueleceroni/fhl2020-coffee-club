@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import { Matcher } from './components/Matcher';
 import './custom.css'
 import OnTheSpotMatch from './components/OnTheSpotMatch';
+import RecurrentMatch from './components/RecurrentMatch';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -19,6 +20,7 @@ export default class App extends Component {
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/get-matches' component={Matcher} />
         <Route path='/on-the-spot-match' component={OnTheSpotMatch} />
+        <Route path='/recurrent-match' component={RecurrentMatch} />
       </Layout>
     );
   }
