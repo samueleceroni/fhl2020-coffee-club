@@ -48,6 +48,9 @@ export class NavMenu extends Component {
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/register">Register user</NavLink>
                 </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/recurrent-match">Recurrent match</NavLink>
+                </NavItem>
               </ul>
             </Collapse>
           </Container>

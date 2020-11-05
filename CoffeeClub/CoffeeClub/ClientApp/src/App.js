@@ -8,6 +8,7 @@ import { Matcher } from './components/Matcher';
 import Register from './components/Register';
 import './custom.css'
 import OnTheSpotMatch from './components/OnTheSpotMatch';
+import RecurrentMatch from './components/RecurrentMatch';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -21,6 +22,7 @@ export default class App extends Component {
         <Route path='/get-matches' component={Matcher} />
         <Route path='/on-the-spot-match' component={OnTheSpotMatch} />
         <Route path='/register' component={Register} />
+        <Route path='/recurrent-match' component={RecurrentMatch} />
       </Layout>
     );
   }

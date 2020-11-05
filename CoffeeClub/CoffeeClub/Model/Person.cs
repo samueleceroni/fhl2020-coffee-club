@@ -148,8 +148,6 @@ namespace CoffeeClub.Model
 
         public static bool operator >(Person a, Person b) => a != null && b != null && a.Id > b.Id;
         public static bool operator <(Person a, Person b) => a != null && b != null && a.Id < b.Id;
-        public static bool operator ==(Person a, Person b) => a != null && b != null && a.Id == b.Id;
-        public static bool operator !=(Person a, Person b) => a != null && b != null && !(a == b);
 
     }
 }
