@@ -84,6 +84,11 @@ namespace CoffeeClub.Model
 
         public bool AreFriends(Person p1, Person p2)
         {
+            if (p1.Equals(p2))
+            {
+                return true;
+            }
+
             SortPersons(ref p1, ref p2);
             return friends.TryGetValue(p1.Id, out var p1Friends) && p1Friends.Contains(p2);
         }
