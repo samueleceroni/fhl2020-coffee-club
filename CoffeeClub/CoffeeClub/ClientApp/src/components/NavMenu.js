@@ -40,10 +40,13 @@ export class NavMenu extends Component {
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/get-matches">Fetch matches</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/get-matches">Fetch matches</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/on-the-spot-match">On the spot match</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/register">Register user</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/recurrent-match">Recurrent match</NavLink>

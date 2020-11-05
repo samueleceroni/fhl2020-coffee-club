@@ -26,9 +26,10 @@ namespace CoffeeClub.Controllers
         {
             var streamReader = new StreamReader(bodyStream);
             var body = await streamReader.ReadToEndAsync();
-            if (!(JsonConvert.DeserializeObject(body) is T obj))
+            Console.Out.WriteLine("Body: " + body);
+            if (!(JsonConvert.DeserializeObject<T>(body) is T obj))
             {
-                throw new ArgumentException("Can't deserialize body to " + nameof(T) + ".");
+                throw new ArgumentException("Can't deserialize body to " + typeof(T) + ".");
             }
             return obj;
         }
@@ -36,6 +37,7 @@ namespace CoffeeClub.Controllers
         [HttpPost]
         public async Task<bool> Add()
         {
+            Console.WriteLine("users add called");
             var person = await BodyStreamToPerson<Person>(Request.Body);
             return users.TryAddUser(person);
         }
