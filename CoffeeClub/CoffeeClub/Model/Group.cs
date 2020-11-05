@@ -11,21 +11,13 @@ namespace CoffeeClub.Model
     public class Group
     {
 
-        public Group(bool Notified=false)
-        {
-            this.Notified = Notified;
-            this.GroupMembers = new HashSet<Person>();
-        }
-        public void AddMember(Person person)
-        {
-            this.GroupMembers.Add(person);
-        }
+        public void AddMember(Person person) => GroupMembers.Add(person);
 
-        public bool ContainsMember(Person person)
-        {
-            return this.GroupMembers.Contains(person);
-        }
-        public bool Notified { get; }
-        public HashSet<Person> GroupMembers { get; }
+        public void RemoveMember(Person person) => GroupMembers.Remove(person);
+
+        public bool ContainsMember(Person person) => GroupMembers.Contains(person);
+
+        public HashSet<Person> GroupMembers { get; } = new HashSet<Person>();
+        public int Count => GroupMembers.Count;
     }
 }

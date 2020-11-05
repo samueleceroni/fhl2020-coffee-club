@@ -14,58 +14,44 @@ namespace CoffeeClub.Controllers
     {    
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IUsers users;
 
-        public UsersController(ILogger<WeatherForecastController> logger)
+        public UsersController(ILogger<WeatherForecastController> logger, IUsers users)
         {
             _logger = logger;
+            this.users = users;
+        }
+
+        private async Task<T> BodyStreamToPerson<T>(Stream bodyStream)
+        {
+            var streamReader = new StreamReader(bodyStream);
+            var body = await streamReader.ReadToEndAsync();
+            if (!(JsonConvert.DeserializeObject(body) is T obj))
+            {
+                throw new ArgumentException("Can't deserialize body to " + nameof(T) + ".");
+            }
+            return obj;
         }
 
         [HttpPost]
         public async Task<bool> Add()
         {
-            var bodyStream = Request.Body;
-            var streamReader = new StreamReader(bodyStream);
-            var body = await streamReader.ReadToEndAsync();
-            var person = JsonConvert.DeserializeObject(body) as Person;
-            if (person is null)
-            {
-                throw new ArgumentException("Can't deserialize body to " + nameof(Person) + ".");
-            }
-            // try to add person to list
-            throw new NotImplementedException();
-
+            var person = await BodyStreamToPerson<Person>(Request.Body);
+            return users.TryAddUser(person);
         }
 
         [HttpPost]
         public async Task<bool> Update()
         {
-            var bodyStream = Request.Body;
-            var streamReader = new StreamReader(bodyStream);
-            var body = await streamReader.ReadToEndAsync();
-            var person = JsonConvert.DeserializeObject(body) as Person;
-            if (person is null)
-            {
-                throw new ArgumentException("Can't deserialize body to " + nameof(Person) + ".");
-            }
-            // try to find person to list
-            throw new NotImplementedException();
-
+            var person = await BodyStreamToPerson<Person>(Request.Body);
+            return users.TryUpdateUser(person);
         }
 
-        [HttpPost]
-        public async Task<bool> Get()
+        [HttpGet]
+        public async Task<Person> Get()
         {
-            var bodyStream = Request.Body;
-            var streamReader = new StreamReader(bodyStream);
-            var body = await streamReader.ReadToEndAsync();
-            var personId = JsonConvert.DeserializeObject(body) as int?;
-            if (personId is null)
-            {
-                throw new ArgumentException("Can't deserialize body to " + nameof(personId) + ".");
-            }
-            // try to find person to list
-            throw new NotImplementedException();
-
+            var personId = await BodyStreamToPerson<int>(Request.Body);
+            return users.TryGetPersonById(personId, out var person) ? person : null;
         }
     }
 }
