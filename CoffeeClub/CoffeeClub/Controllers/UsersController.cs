@@ -27,7 +27,7 @@ namespace CoffeeClub.Controllers
             var streamReader = new StreamReader(bodyStream);
             var body = await streamReader.ReadToEndAsync();
             Console.Out.WriteLine("Body: " + body);
-            if (!(JsonConvert.DeserializeObject(body) is T obj))
+            if (!(JsonConvert.DeserializeObject<T>(body) is T obj))
             {
                 throw new ArgumentException("Can't deserialize body to " + typeof(T) + ".");
             }

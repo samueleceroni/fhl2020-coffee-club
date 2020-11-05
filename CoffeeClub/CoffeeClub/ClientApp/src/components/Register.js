@@ -16,18 +16,18 @@ const Register = props => {
 
     const createPerson = () => {
         return {
-            'Id': 0,
-            'FirstName': firstName,
-            'SecondName': secondName,
-            'Interests': (interests.split(',')),
-            'Region': region,
-            'Country': country,
-            'City': city,
-            'Role': role,
-            'Department': department,
-            'Organization': organization,
-            'Age': +age,
-            'Sex': sex
+            'id': 0,
+            'firstName': firstName,
+            'secondName': secondName,
+            'interests': (interests.split(',')),
+            'region': region,
+            'country': country,
+            'city': city,
+            'role': role,
+            'department': department,
+            'organization': organization,
+            'age': +age,
+            'sex': sex
         };
     }
 
