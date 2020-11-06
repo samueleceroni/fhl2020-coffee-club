@@ -17,7 +17,7 @@ export class Home extends Component {
             <li>foster the exchange of ideas which may lead to the creation of new projects</li>
             <li>have a coffee altogether!</li>
         </ul>
-        <h3>How to partecipate?</h3>
+        <h3>How to participate?</h3>
         <p>Just sign up for the club in the web app, decide the frequency of your regular meetings and select your preferences so that we can find a good matches for you :)</p>
         <p>Should you feel you want to have another coffee club chat out of your scheduled ones, you can use the on-the-spot meeting button! You will either get a match instantly or wait for it in a queue :)</p>
       </div>
