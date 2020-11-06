@@ -6,20 +6,20 @@ export class Home extends Component {
   render () {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
+        <h1>Hello, MS world!</h1>
+            <p>Ever felt like... you want to know other people? or you have ideas to develop and you're looking for a partner? or simply want to chat with someone who has completely different interests than you?  <i>MS Coffee Club is what you're looking for then!</i></p>
+        <p>MS Coffee Club is an internal MS tool which allows employees to get to know each other semi-randomly, to support diversity and inclusion while trying to meet your preferences at the same time.</p>
+        <p>Some of the aim of the club:</p>
         <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+            <li>expand your network in the world wide One Microsoft</li>
+            <li>exchange ideas, thoughts, tips about how to live your best life in Microsoft</li>
+            <li>know more parts of the company and understand each other points of view</li>
+            <li>foster the exchange of ideas which may lead to the creation of new projects</li>
+            <li>have a coffee altogether!</li>
         </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
+        <h3>How to partecipate?</h3>
+        <p>Just sign up for the club in the web app, decide the frequency of your regular meetings and select your preferences so that we can find a good matches for you :)</p>
+        <p>Should you feel you want to have another coffee club chat out of your scheduled ones, you can use the on-the-spot meeting button! You will either get a match instantly or wait for it in a queue :)</p>
       </div>
     );
   }

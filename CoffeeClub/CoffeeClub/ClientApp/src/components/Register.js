@@ -77,8 +77,8 @@ const Register = props => {
                 <label htmlFor="sex">Sex: </label>
                 <input type="text" id="Sex" onChange={sexChangedHandler} />
             </div>
-        <input type="submit" value="Run query" />
-        <input type="reset" value="Reset form" />
+            <input type="submit" className="btn btn-primary" value="Run query" />
+            <input type="reset" className="btn btn-primary" value="Reset form" />
     </form>
 
     const checkFormCompleted = () => {
@@ -160,8 +160,8 @@ const Register = props => {
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
+        <h1 id="tabelLabel" >Register new user</h1>
+        <p>Please enter all the information of the person you want to register.</p>
         {generateNewPersonForm()}
       </div>
     );
