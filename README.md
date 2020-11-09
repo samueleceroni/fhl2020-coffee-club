@@ -1,5 +1,5 @@
 # Hello, MS world!
-Ever felt like... you want to know other people? or you have ideas to develop and you're looking for a partner? or simply want to chat with someone who has completely different interests than you? MS Coffee Club is what you're looking for then!
+Ever felt like... you want to know other people? or you have ideas to develop and you're looking for a partner? or simply want to chat with someone who has completely different interests than you? *MS Coffee Club is what you're looking for then!*
 
 MS Coffee Club is an internal MS tool which allows employees to get to know each other semi-randomly, to support diversity and inclusion while trying to meet your preferences at the same time.
 
